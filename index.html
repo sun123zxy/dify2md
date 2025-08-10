@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dify2MD</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Dify2MD</h1>
+        <p>Convert Dify conversation history JSON to Markdown format</p>
+    </div>
+
+    <div class="controls">
+        <div class="name-settings">
+            <label>Your name:</label>
+            <input type="text" id="userName" value="User" placeholder="Your name">
+            <button class="swap-btn" onclick="swapNames()" title="Swap names">⇄</button>
+            <label>AI name:</label>
+            <input type="text" id="aiName" value="AI" placeholder="AI name">
+        </div>
+        <div class="message-id-settings">
+            <label>Last message ID (optional):</label>
+            <input type="text" id="messageId" placeholder="last message ID">
+            <button class="clear-btn" onclick="clearMessageId()" title="Clear message ID">✕</button>
+        </div>
+        <button class="convert-btn" onclick="convertToMarkdown()">Convert to Markdown</button>
+    </div>
+
+    <div class="error-message" id="errorMessage"></div>
+    <div class="success-message" id="successMessage"></div>
+
+    <div class="main-container">
+        <div class="panel">
+            <div class="panel-header">JSON Input</div>
+            <div class="panel-content">
+                <textarea 
+                    class="json-input" 
+                    id="jsonInput" 
+                    placeholder="Please paste your Dify conversation history JSON data here...&#10;&#10;Format example:&#10;{&#10;  &quot;limit&quot;: 100,&#10;  &quot;has_more&quot;: false,&#10;  &quot;data&quot;: [&#10;    {&#10;      &quot;id&quot;: &quot;...&quot;,&#10;      &quot;query&quot;: &quot;User question&quot;,&#10;      &quot;answer&quot;: &quot;AI response&quot;,&#10;      &quot;parent_message_id&quot;: null,&#10;      ...&#10;    }&#10;  ]&#10;}"></textarea>
+            </div>
+        </div>
+
+        <div class="panel output-panel">
+            <div class="panel-header">
+                Markdown Output
+                <button class="copy-btn" onclick="copyToClipboard()" style="display: none;" id="copyBtn">Copy</button>
+            </div>
+            <div class="panel-content">
+                <div class="markdown-output" id="markdownOutput">
+                    <p style="color: #7f8c8d; font-style: italic;">Converted Markdown content will be displayed here...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
